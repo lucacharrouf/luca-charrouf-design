@@ -1,13 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Github, Linkedin, Mail } from "lucide-react";
 import profileImage from "@/assets/profile-image.jpg";
 
 const Hero = () => {
+  const socialLinks = [
+    { icon: Github, href: "https://github.com", label: "GitHub" },
+    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+    { icon: Mail, href: "mailto:luca@example.com", label: "Email" },
+  ];
+
   return (
     <section className="min-h-[80vh] flex items-center justify-center px-4">
       <div className="text-center space-y-8 max-w-4xl mx-auto">
         <div className="space-y-6 animate-fade-in">
-          <div className="mx-auto w-48 h-48 rounded-full overflow-hidden border-4 border-border shadow-lg animate-float">
+          <div className="mx-auto w-48 h-48 border border-border overflow-hidden">
             <img
               src={profileImage}
               alt="Luca Charrouf"
@@ -18,7 +25,7 @@ const Hero = () => {
           <div className="space-y-4">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
               Hi, I'm{" "}
-              <span className="bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+              <span className="text-primary">
                 Luca Charrouf
               </span>
             </h1>
@@ -26,6 +33,22 @@ const Hero = () => {
               Software Engineer & Product Manager passionate about building
               innovative solutions that make a difference.
             </p>
+          </div>
+
+          {/* Social Media Links */}
+          <div className="flex items-center justify-center space-x-4">
+            {socialLinks.map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                className="social-button"
+              >
+                <social.icon className="h-5 w-5" />
+              </a>
+            ))}
           </div>
         </div>
 
