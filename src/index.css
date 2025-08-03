@@ -118,9 +118,15 @@ All colors MUST be HSL for proper theming */
 }
 
 @keyframes blob {
-  0%, 100% { transform: 'scale(1) translate(0, 0)'; }
-  33% { transform: 'scale(1.02) translate(1px, -1px)'; }
-  66% { transform: 'scale(0.98) translate(-1px, 1px)'; }
+  0%, 100% { transform: scale(1) translate(0, 0); }
+  33% { transform: scale(1.02) translate(1px, -1px); }
+  66% { transform: scale(0.98) translate(-1px, 1px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-3px); }
+}
 }
 
 @layer components {
@@ -129,11 +135,26 @@ All colors MUST be HSL for proper theming */
   }
   
   .hero-button-liquid {
-    @apply bg-primary text-primary-foreground hover:bg-primary/80 px-6 py-2 font-medium transition-all duration-200 border border-primary animate-liquid;
+    @apply bg-primary text-primary-foreground px-6 py-2 font-medium border border-primary animate-liquid;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  
+  .hero-button-liquid:hover {
+    @apply bg-primary/80;
+    transform: translateY(-1px);
   }
   
   .hero-button-outline {
-    @apply border border-border hover:border-primary hover:text-primary px-6 py-2 font-medium transition-all duration-200 rounded-lg;
+    @apply border border-border hover:border-primary hover:text-primary px-6 py-2 font-medium rounded-lg;
+    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  
+  .hero-button-outline:hover {
+    transform: translateY(-1px);
+  }
+  
+  .floating-image {
+    @apply animate-float;
   }
   
   .nav-link {

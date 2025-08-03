@@ -99,7 +99,7 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.6s ease-out',
 				'slide-up': 'slide-up 0.8s ease-out',
-				'float': 'float 3s ease-in-out infinite',
+				'float': 'float 3.5s ease-in-out infinite',
 				'glow': 'glow 2s ease-in-out infinite',
 				'liquid': 'liquid 4s ease-in-out infinite',
 				'blob': 'blob 6s ease-in-out infinite'

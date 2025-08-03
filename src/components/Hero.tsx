@@ -14,7 +14,7 @@ const Hero = () => {
     <section className="min-h-[80vh] flex items-center justify-center px-4">
       <div className="text-center space-y-8 max-w-4xl mx-auto">
         <div className="space-y-6 animate-fade-in">
-          <div className="mx-auto w-48 h-48 border border-border overflow-hidden rounded-xl animate-blob">
+          <div className="mx-auto w-48 h-48 border border-border overflow-hidden rounded-xl floating-image">
             <img
               src={profileImage}
               alt="Luca Charrouf"
