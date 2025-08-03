@@ -101,8 +101,9 @@ export default {
 				'slide-up': 'slide-up 0.8s ease-out',
 				'float': 'float 3.5s ease-in-out infinite',
 				'glow': 'glow 2s ease-in-out infinite',
-				'liquid': 'liquid 4s ease-in-out infinite',
-				'blob': 'blob 6s ease-in-out infinite'
+				'liquid': 'liquid 6s ease-in-out infinite',
+				'blob': 'blob 6s ease-in-out infinite',
+				'ripple': 'ripple 0.6s ease-out'
 			}
 		}
 	},
