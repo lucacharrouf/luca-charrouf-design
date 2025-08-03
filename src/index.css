@@ -35,7 +35,7 @@ All colors MUST be HSL for proper theming */
     --input: 0 0% 96%;
     --ring: 0 0% 0%;
 
-    --radius: 0rem;
+    --radius: 0.5rem;
 
     /* Minimal transitions */
     --transition-smooth: all 0.2s ease;
@@ -110,13 +110,30 @@ All colors MUST be HSL for proper theming */
   }
 }
 
+@keyframes liquid {
+  0%, 100% { border-radius: 12px; }
+  25% { border-radius: 18px 12px 16px 14px; }
+  50% { border-radius: 14px 18px 12px 16px; }
+  75% { border-radius: 16px 14px 18px 12px; }
+}
+
+@keyframes blob {
+  0%, 100% { transform: 'scale(1) translate(0, 0)'; }
+  33% { transform: 'scale(1.02) translate(1px, -1px)'; }
+  66% { transform: 'scale(0.98) translate(-1px, 1px)'; }
+}
+
 @layer components {
   .hero-button {
-    @apply bg-primary text-primary-foreground hover:bg-primary/80 px-6 py-2 font-medium transition-all duration-200 border border-primary;
+    @apply bg-primary text-primary-foreground hover:bg-primary/80 px-6 py-2 font-medium transition-all duration-200 border border-primary rounded-lg;
+  }
+  
+  .hero-button-liquid {
+    @apply bg-primary text-primary-foreground hover:bg-primary/80 px-6 py-2 font-medium transition-all duration-200 border border-primary animate-liquid;
   }
   
   .hero-button-outline {
-    @apply border border-border hover:border-primary hover:text-primary px-6 py-2 font-medium transition-all duration-200;
+    @apply border border-border hover:border-primary hover:text-primary px-6 py-2 font-medium transition-all duration-200 rounded-lg;
   }
   
   .nav-link {
@@ -136,10 +153,10 @@ All colors MUST be HSL for proper theming */
   }
   
   .experience-card {
-    @apply bg-card border border-border p-6 transition-all duration-200 hover:border-primary;
+    @apply bg-card border border-border p-6 transition-all duration-200 hover:border-primary rounded-lg;
   }
   
   .social-button {
-    @apply w-10 h-10 border border-border hover:border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200 flex items-center justify-center;
+    @apply w-10 h-10 border border-border hover:border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200 flex items-center justify-center rounded-lg;
   }
 }

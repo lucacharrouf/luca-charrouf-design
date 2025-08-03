@@ -14,7 +14,7 @@ const Hero = () => {
     <section className="min-h-[80vh] flex items-center justify-center px-4">
       <div className="text-center space-y-8 max-w-4xl mx-auto">
         <div className="space-y-6 animate-fade-in">
-          <div className="mx-auto w-48 h-48 border border-border overflow-hidden">
+          <div className="mx-auto w-48 h-48 border border-border overflow-hidden rounded-xl animate-blob">
             <img
               src={profileImage}
               alt="Luca Charrouf"
@@ -53,7 +53,7 @@ const Hero = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
-          <Button asChild className="hero-button">
+          <Button asChild className="hero-button-liquid">
             <Link to="/projects">View Projects</Link>
           </Button>
           <Button asChild variant="outline" className="hero-button-outline">
