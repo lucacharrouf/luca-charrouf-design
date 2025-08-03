@@ -52,22 +52,16 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-slide-up">
-          <button className="glass-button glass-button-primary glass-button-liquid">
-            <Link to="/projects" className="block w-full h-full">
-              View Projects
-            </Link>
-          </button>
-          <button className="glass-button">
-            <Link to="/about" className="block w-full h-full">
-              About Me
-            </Link>
-          </button>
-          <button className="glass-button">
-            <Link to="/blog" className="block w-full h-full">
-              Read Blog
-            </Link>
-          </button>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
+          <Button asChild className="hero-button-liquid">
+            <Link to="/projects">View Projects</Link>
+          </Button>
+          <Button asChild variant="outline" className="hero-button-outline">
+            <Link to="/about">About Me</Link>
+          </Button>
+          <Button asChild variant="ghost" className="hero-button-outline">
+            <Link to="/blog">Read Blog</Link>
+          </Button>
         </div>
       </div>
     </section>
