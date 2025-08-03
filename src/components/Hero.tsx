@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail } from "lucide-react";
-import profileImage from "@/assets/profile-image.jpg";
+import profileImage from "/public/LucaBerkeley.jpg";
 
 const Hero = () => {
   const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Mail, href: "mailto:luca@example.com", label: "Email" },
+    { icon: Github, href: "https://github.com/lucacharrouf", label: "GitHub" },
+    { icon: Linkedin, href: "https://linkedin.com/lucacharrouf", label: "LinkedIn" },
+    { icon: Mail, href: "mailto:lucacharrouf@gmail.com", label: "Email" },
   ];
 
   return (
