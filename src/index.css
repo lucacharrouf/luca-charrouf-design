@@ -127,7 +127,6 @@ All colors MUST be HSL for proper theming */
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-3px); }
 }
-}
 
 @layer components {
   .hero-button {
