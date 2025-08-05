@@ -1,14 +1,23 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail } from "lucide-react";
-import profileImage from "/public/LucaBerkeley.jpg";
+import { supabase } from "@/lib/supabase";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
+  const [profileImageUrl, setProfileImageUrl] = useState<string>("");
+
   const socialLinks = [
     { icon: Github, href: "https://github.com/lucacharrouf", label: "GitHub" },
-    { icon: Linkedin, href: "https://linkedin.com/lucacharrouf", label: "LinkedIn" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/lucacharrouf/", label: "LinkedIn" },
     { icon: Mail, href: "mailto:lucacharrouf@gmail.com", label: "Email" },
   ];
+
+  useEffect(() => {
+    // Get the public URL for LucaBerkeley.jpg from the 'pics' bucket
+    const { data } = supabase.storage.from("pics").getPublicUrl("LucaBerkeley.jpg");
+    setProfileImageUrl(data.publicUrl);
+  }, []);
 
   return (
     <section className="min-h-[80vh] flex items-center justify-center px-4">
@@ -16,7 +25,7 @@ const Hero = () => {
         <div className="space-y-6 animate-fade-in">
           <div className="mx-auto w-48 h-48 border border-border overflow-hidden rounded-xl floating-image">
             <img
-              src={profileImage}
+              src={profileImageUrl || "/placeholder.svg"}
               alt="Luca Charrouf"
               className="w-full h-full object-cover"
             />
