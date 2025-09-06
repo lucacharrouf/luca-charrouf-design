@@ -27,9 +27,13 @@ const BlogPreview = () => {
     <section className="py-16 px-4">
       <div className="container max-w-4xl mx-auto">
         <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Writing</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-tech-purple via-tech-pink to-tech-orange">
+              Writing
+            </span>
+          </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            My thoughts on technology, product development, and the intersection
+            My thoughts on <span className="text-tech-green font-semibold">technology</span>, <span className="text-tech-blue font-semibold">product development</span>, and the intersection
             of innovation and human experience.
           </p>
         </div>
@@ -38,7 +42,7 @@ const BlogPreview = () => {
           {blogPosts.map((post, index) => (
             <Card 
               key={post.id} 
-              className="experience-card animate-slide-up"
+              className="tech-card animate-slide-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardHeader>

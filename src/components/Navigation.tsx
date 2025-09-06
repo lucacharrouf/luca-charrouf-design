@@ -31,11 +31,11 @@ const Navigation = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background">
+    <header className="sticky top-0 z-50 w-full border-b border-border tech-nav">
       <div className="container flex h-16 items-center justify-between">
         <Link 
           to="/" 
-          className="text-xl font-bold tracking-tight hover:text-primary transition-colors duration-200"
+          className="text-xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-tech-cyan to-tech-blue hover:from-tech-blue hover:to-tech-purple transition-all duration-300"
         >
           Luca Charrouf
         </Link>
@@ -57,16 +57,16 @@ const Navigation = () => {
         <div className="flex items-center space-x-4">
           <button
             onClick={handleSearchClick}
-            className="flex items-center gap-2 px-4 py-2 bg-muted/50 border border-border rounded-lg text-sm text-muted-foreground hover:border-primary hover:text-primary hover:bg-background transition-all duration-200 w-64 hidden sm:flex"
+            className="search-button flex items-center gap-2 px-4 py-2 rounded-xl text-sm text-muted-foreground w-64 hidden sm:flex"
           >
             <Search className="h-4 w-4" />
             <span>Search...</span>
-            <span className="ml-auto text-xs opacity-60">⌘K</span>
+            <span className="ml-auto text-xs opacity-60 text-tech-cyan">⌘K</span>
           </button>
           
           <button
             onClick={handleSearchClick}
-            className="flex items-center justify-center w-10 h-10 border border-border rounded-lg text-muted-foreground hover:border-primary hover:text-primary hover:bg-background transition-all duration-200 sm:hidden"
+            className="search-button flex items-center justify-center w-10 h-10 rounded-xl text-muted-foreground sm:hidden"
           >
             <Search className="h-4 w-4" />
           </button>
