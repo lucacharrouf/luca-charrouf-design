@@ -31,15 +31,15 @@ const Hero = () => {
             />
           </div>
           
-          <div className="space-y-6">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+          <div className="space-y-4">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
               Hi, I'm{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-tech-cyan via-tech-blue to-tech-purple animate-pulse-glow">
+              <span className="text-primary">
                 Luca Charrouf
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              <span className="text-tech-cyan font-semibold">Software Engineer</span> & <span className="text-tech-blue font-semibold">Product Manager</span> passionate about building
+              Software Engineer & Product Manager passionate about building
               innovative solutions that make a difference.
             </p>
           </div>
@@ -61,14 +61,14 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-slide-up">
-          <Button asChild className="hero-button">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
+          <Button asChild className="hero-button-liquid">
             <Link to="/projects">View Projects</Link>
           </Button>
           <Button asChild variant="outline" className="hero-button-outline">
             <Link to="/about">About Me</Link>
           </Button>
-          <Button asChild variant="ghost" className="hero-button-ghost">
+          <Button asChild variant="ghost" className="hero-button-outline">
             <Link to="/blog">Read Blog</Link>
           </Button>
         </div>

@@ -2,61 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Futuristic tech design system
+/* Minimal black and white design system
 All colors MUST be HSL for proper theming */
 
 @layer base {
   :root {
-    --background: 222 84% 5%;
-    --foreground: 213 31% 91%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
 
-    --card: 222 84% 5%;
-    --card-foreground: 213 31% 91%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
 
-    --popover: 222 84% 5%;
-    --popover-foreground: 213 31% 91%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
 
-    --primary: 194 100% 50%;
-    --primary-foreground: 222 84% 5%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 213 31% 91%;
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 0%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 217 33% 17%;
-    --accent-foreground: 213 31% 91%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 213 31% 91%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 194 100% 50%;
+    --border: 0 0% 90%;
+    --input: 0 0% 96%;
+    --ring: 0 0% 0%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    /* Tech color palette */
-    --tech-cyan: 194 100% 50%;
-    --tech-blue: 220 91% 65%;
-    --tech-purple: 271 81% 56%;
-    --tech-green: 142 76% 36%;
-    --tech-orange: 25 95% 53%;
-    --tech-pink: 330 81% 60%;
-    
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(194 100% 50%), hsl(220 91% 65%));
-    --gradient-secondary: linear-gradient(135deg, hsl(271 81% 56%), hsl(330 81% 60%));
-    --gradient-accent: linear-gradient(135deg, hsl(142 76% 36%), hsl(25 95% 53%));
-    
-    /* Shadows and glows */
-    --glow-primary: 0 0 20px hsl(194 100% 50% / 0.3);
-    --glow-secondary: 0 0 20px hsl(271 81% 56% / 0.3);
-    --shadow-tech: 0 25px 50px -12px hsl(194 100% 50% / 0.25);
-    
-    /* Smooth transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Minimal transitions */
+    --transition-smooth: all 0.2s ease;
 
     --sidebar-background: 0 0% 98%;
 
@@ -76,33 +58,33 @@ All colors MUST be HSL for proper theming */
   }
 
   .dark {
-    --background: 222 84% 5%;
-    --foreground: 213 31% 91%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
-    --card: 222 84% 5%;
-    --card-foreground: 213 31% 91%;
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 222 84% 5%;
-    --popover-foreground: 213 31% 91%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 194 100% 50%;
-    --primary-foreground: 222 84% 5%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 213 31% 91%;
+    --secondary: 0 0% 5%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 0 0% 4%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 217 33% 17%;
-    --accent-foreground: 213 31% 91%;
+    --accent: 0 0% 5%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 213 31% 91%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 194 100% 50%;
+    --border: 0 0% 10%;
+    --input: 0 0% 4%;
+    --ring: 0 0% 100%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -121,30 +103,10 @@ All colors MUST be HSL for proper theming */
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    background-image: 
-      radial-gradient(circle at 20% 80%, hsl(194 100% 50% / 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, hsl(271 81% 56% / 0.08) 0%, transparent 50%),
-      radial-gradient(circle at 40% 40%, hsl(220 91% 65% / 0.05) 0%, transparent 50%);
   }
 
   html {
     scroll-behavior: smooth;
-  }
-
-  /* Tech grid overlay */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: 
-      linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-    pointer-events: none;
-    z-index: -1;
   }
 }
 
@@ -168,63 +130,38 @@ All colors MUST be HSL for proper theming */
 
 @layer components {
   .hero-button {
-    @apply px-8 py-3 font-semibold rounded-xl transition-all duration-300;
-    background: var(--gradient-primary);
-    box-shadow: var(--glow-primary), var(--shadow-tech);
-    border: 1px solid hsl(var(--tech-cyan) / 0.3);
+    @apply bg-primary text-primary-foreground hover:bg-primary/80 px-6 py-2 font-medium transition-all duration-200 border border-primary rounded-lg;
   }
   
-  .hero-button:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 0 30px hsl(var(--tech-cyan) / 0.4), var(--shadow-tech);
+  .hero-button-liquid {
+    @apply bg-primary text-primary-foreground px-6 py-2 font-medium border border-primary animate-liquid;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  
+  .hero-button-liquid:hover {
+    @apply bg-primary/80;
+    transform: translateY(-1px);
   }
   
   .hero-button-outline {
-    @apply px-8 py-3 font-semibold rounded-xl border transition-all duration-300;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
-    border: 1px solid hsl(var(--tech-blue) / 0.3);
-    color: hsl(var(--tech-blue));
+    @apply border border-border hover:border-primary hover:text-primary px-6 py-2 font-medium rounded-lg;
+    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   }
   
   .hero-button-outline:hover {
-    transform: translateY(-2px) scale(1.02);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: hsl(var(--tech-blue) / 0.6);
-    box-shadow: 0 0 20px hsl(var(--tech-blue) / 0.3);
-    color: hsl(var(--tech-cyan));
-  }
-
-  .hero-button-ghost {
-    @apply px-8 py-3 font-semibold rounded-xl transition-all duration-300;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
-    border: 1px solid hsl(var(--tech-purple) / 0.3);
-    color: hsl(var(--tech-purple));
-  }
-  
-  .hero-button-ghost:hover {
-    transform: translateY(-2px) scale(1.02);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: hsl(var(--tech-purple) / 0.6);
-    box-shadow: 0 0 20px hsl(var(--tech-purple) / 0.3);
-    color: hsl(var(--tech-pink));
+    transform: translateY(-1px);
   }
   
   .floating-image {
     @apply animate-float;
-    border: 2px solid hsl(var(--tech-cyan) / 0.3);
-    box-shadow: 0 0 30px hsl(var(--tech-cyan) / 0.2);
   }
   
   .nav-link {
-    @apply text-muted-foreground hover:text-primary transition-all duration-300 relative font-medium;
+    @apply text-muted-foreground hover:text-foreground transition-colors duration-200 relative;
   }
   
   .nav-link::after {
-    @apply content-[''] absolute w-full h-0.5 bottom-0 left-0 scale-x-0 origin-right transition-transform duration-300;
-    background: var(--gradient-primary);
-    box-shadow: var(--glow-primary);
+    @apply content-[''] absolute w-full h-0.5 bg-primary bottom-0 left-0 scale-x-0 origin-right transition-transform duration-200;
   }
   
   .nav-link:hover::after {
@@ -235,65 +172,11 @@ All colors MUST be HSL for proper theming */
     @apply animate-fade-in;
   }
   
-  .tech-card {
-    @apply bg-card p-6 rounded-xl transition-all duration-300 relative overflow-hidden;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
-    border: 1px solid hsl(var(--border) / 0.3);
-  }
-  
-  .tech-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: var(--gradient-primary);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  .tech-card:hover {
-    transform: translateY(-4px);
-    border-color: hsl(var(--tech-cyan) / 0.4);
-    box-shadow: 0 10px 40px hsl(var(--tech-cyan) / 0.15);
-  }
-  
-  .tech-card:hover::before {
-    opacity: 1;
+  .experience-card {
+    @apply bg-card border border-border p-6 transition-all duration-200 hover:border-primary rounded-lg;
   }
   
   .social-button {
-    @apply w-12 h-12 border transition-all duration-300 flex items-center justify-center rounded-xl relative overflow-hidden;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
-    border: 1px solid hsl(var(--border) / 0.3);
-  }
-  
-  .social-button:hover {
-    transform: translateY(-2px) scale(1.05);
-    border-color: hsl(var(--tech-cyan) / 0.6);
-    box-shadow: 0 0 20px hsl(var(--tech-cyan) / 0.3);
-    color: hsl(var(--tech-cyan));
-  }
-
-  .tech-nav {
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid hsl(var(--border) / 0.3);
-  }
-
-  .search-button {
-    @apply transition-all duration-300;
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
-    border: 1px solid hsl(var(--border) / 0.3);
-  }
-
-  .search-button:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: hsl(var(--tech-cyan) / 0.4);
-    box-shadow: 0 0 15px hsl(var(--tech-cyan) / 0.2);
+    @apply w-10 h-10 border border-border hover:border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200 flex items-center justify-center rounded-lg;
   }
 }
