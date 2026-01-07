@@ -1,31 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail } from "lucide-react";
-import { supabase } from "@/lib/supabase";
-import { useEffect, useState } from "react";
 
 const Hero = () => {
-  const [profileImageUrl, setProfileImageUrl] = useState<string>("");
-
   const socialLinks = [
     { icon: Github, href: "https://github.com/lucacharrouf", label: "GitHub" },
     { icon: Linkedin, href: "https://www.linkedin.com/in/lucacharrouf/", label: "LinkedIn" },
     { icon: Mail, href: "mailto:lucacharrouf@gmail.com", label: "Email" },
   ];
 
-  useEffect(() => {
-    // Get the public URL for LucaBerkeley.jpg from the 'pics' bucket
-    const { data } = supabase.storage.from("pics").getPublicUrl("LucaBerkeley.jpg");
-    setProfileImageUrl(data.publicUrl);
-  }, []);
-
   return (
     <section className="min-h-[80vh] flex items-center justify-center px-4">
       <div className="text-center space-y-8 max-w-4xl mx-auto">
         <div className="space-y-6 animate-fade-in">
-          <div className="mx-auto w-48 h-48 border border-border overflow-hidden rounded-xl floating-image">
+          <div className="mx-auto w-72 h-72 border border-border overflow-hidden rounded-xl floating-image">
             <img
-              src={profileImageUrl || "/placeholder.svg"}
+              //src="/LucaBerkeley.jpg"
               alt="Luca Charrouf"
               className="w-full h-full object-cover"
             />
@@ -39,8 +29,8 @@ const Hero = () => {
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Software Engineer & Product Manager passionate about building
-              innovative solutions that make a difference.
+              A little bit about me, my thoughts, and things I have done and learned in the last
+              few years.
             </p>
           </div>
 

@@ -2,112 +2,12 @@ import { useParams, Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
-
-interface BlogPostData {
-  [key: string]: {
-    title: string;
-    date: string;
-    readTime: string;
-    content: string;
-  };
-}
+import { blogPosts } from "@/data/blogPosts";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
 
-  const blogPosts: BlogPostData = {
-    "building-scalable-react-applications": {
-      title: "Building Scalable React Applications",
-      date: "2025-01-15",
-      readTime: "8 min",
-      content: `
-        This is a detailed guide on building scalable React applications.
-        
-        ## Introduction
-        
-        In this post, we'll explore the best practices for architecting large-scale React applications with modern tooling and patterns.
-        
-        ## Key Concepts
-        
-        - Component Architecture
-        - State Management
-        - Performance Optimization
-        - Code Organization
-        
-        ## Conclusion
-        
-        Building scalable applications requires careful planning and adherence to best practices.
-      `
-    },
-    "future-ai-product-development": {
-      title: "The Future of AI in Product Development",
-      date: "2025-01-10",
-      readTime: "6 min",
-      content: `
-        Exploring how artificial intelligence is transforming product management and development cycles.
-        
-        ## The Current Landscape
-        
-        AI is rapidly changing how we approach product development, from user research automation to predictive analytics.
-        
-        ## Key Areas of Impact
-        
-        - User Research Automation
-        - Predictive Analytics
-        - Automated Testing
-        - Personalization at Scale
-        
-        ## Looking Forward
-        
-        The future holds even more exciting possibilities for AI-driven product development.
-      `
-    },
-    "optimizing-database-performance": {
-      title: "Optimizing Database Performance at Scale",
-      date: "2025-01-05",
-      readTime: "12 min",
-      content: `
-        A comprehensive guide to PostgreSQL optimization techniques for high-traffic applications.
-        
-        ## Performance Fundamentals
-        
-        Understanding database performance starts with proper indexing and query optimization.
-        
-        ## Advanced Techniques
-        
-        - Connection Pooling
-        - Query Optimization
-        - Index Strategies
-        - Monitoring and Alerting
-        
-        ## Real-World Examples
-        
-        Case studies from production environments demonstrate these concepts in action.
-      `
-    },
-    "modern-css-grid-vs-flexbox": {
-      title: "Modern CSS: Grid vs Flexbox",
-      date: "2024-12-28",
-      readTime: "5 min",
-      content: `
-        A comprehensive comparison of CSS Grid and Flexbox layouts.
-        
-        ## When to Use Grid
-        
-        CSS Grid is perfect for two-dimensional layouts and complex design patterns.
-        
-        ## When to Use Flexbox
-        
-        Flexbox excels at one-dimensional layouts and component-level design.
-        
-        ## Practical Examples
-        
-        Real-world examples show how to choose between these powerful layout systems.
-      `
-    }
-  };
-
-  const post = slug ? blogPosts[slug] : null;
+  const post = blogPosts.find(p => p.slug === slug);
 
   if (!post) {
     return (

@@ -19,41 +19,31 @@ const Projects = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with modern payment integration",
-      longDescription: "A comprehensive e-commerce platform built with React, Node.js, and PostgreSQL. Features include user authentication, product catalog, shopping cart, order management, and Stripe payment integration. Deployed on AWS with CI/CD pipeline.",
-      technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "AWS", "Docker"],
-      liveUrl: "https://demo-ecommerce.com",
-      githubUrl: "https://github.com/luca/ecommerce-platform",
+      title: "CS290: Skin Lesion Classification",
+      description: "Traditional extraction methods vs neural networks for skin lesion classification",
+      longDescription: "I used feature extraction and fitted the features in a random forest model that got a very similar accuracy to the results of a neural network. The main learning here is that most of the times, simpler and less complex learning techniques can we used to solve most of our problems and obtain the same results. This is also something I learned from my professor Hany Farid, that thought the class.",
+      technologies: ["Random Forests", "CNN", "Image Classification"],
+      githubUrl: "https://github.com/lucacharrouf/cs290-final-project",
       featured: true
     },
     {
       id: 2,
-      title: "AI-Powered Analytics Dashboard",
-      description: "Machine learning dashboard for business intelligence and insights",
-      longDescription: "An intelligent analytics dashboard that uses machine learning to provide actionable business insights. Built with Python, React, and TensorFlow. Features predictive analytics, automated reporting, and real-time data visualization.",
-      technologies: ["React", "Python", "TensorFlow", "D3.js", "FastAPI", "Redis"],
-      liveUrl: "https://analytics-dashboard.com",
-      githubUrl: "https://github.com/luca/ai-analytics",
+      title: "Text-to-Manim",
+      description: "Convert mathematical concepts into nice animations",
+      longDescription: "Math can be hard something, why don't we just visualize it? Inspired by the best math YT channel 3BlueBrown, I am reusing the library made, Manim, to generate scripts that explain math concepts like linear algebra.",
+      technologies: ["Manim"],
+      liveUrl: "https://visualize-mathematics.vercel.app/",
+      // githubUrl: "https://github.com/luca/ai-analytics",
       featured: true
     },
     {
       id: 3,
-      title: "Task Management App",
-      description: "Collaborative project management tool with real-time updates",
-      longDescription: "A modern task management application with real-time collaboration features. Built with React, Socket.io, and MongoDB. Includes drag-and-drop kanban boards, team collaboration, time tracking, and notifications.",
-      technologies: ["React", "Socket.io", "MongoDB", "Express", "Tailwind CSS"],
-      githubUrl: "https://github.com/luca/task-manager",
-      featured: false
-    },
-    {
-      id: 4,
-      title: "Personal Finance Tracker",
-      description: "Smart budgeting app with expense categorization and insights",
-      longDescription: "A personal finance management tool that automatically categorizes expenses and provides spending insights. Features bank account integration, budget tracking, financial goal setting, and expense analysis with charts and reports.",
-      technologies: ["React Native", "Node.js", "PostgreSQL", "Plaid API", "Chart.js"],
-      liveUrl: "https://finance-tracker.app",
-      featured: false
+      title: "Think Fast, Think Slow",
+      description: "Using MCP to avoid LLMs to hallucinate",
+      longDescription: "LLMs hallucinate, and sometimes they just seem very stupid. At the Anthropic hackaton, we used MCP to minimize errors with a model that first thinks fast (and likely hallucinates), and than thinks slow (double checks errors and fixes them). The intesting part is that the hackathon was a 2 hours one. I wrote an article about hackathons if you want to see how they are changing.",
+      technologies: ["AI", "MCP"],
+      liveUrl: "https://youtu.be/RxXlgq3fRNI", 
+      featured: true
     }
   ];
 
@@ -67,17 +57,15 @@ const Projects = () => {
       <main className="container max-w-6xl mx-auto px-4 py-16">
         <div className="space-y-16">
           {/* Header */}
-          <section className="text-center space-y-6 animate-fade-in">
+          <section className="space-y-6 animate-fade-in">
             <h1 className="text-4xl md:text-5xl font-bold">Projects</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              A collection of projects I've built, from full-stack web applications 
-              to mobile apps and AI-powered solutions.
+            <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed">
+              A bunch of random projects and interesting learnings (More to be added soon).
             </p>
           </section>
 
           {/* Featured Projects */}
           <section className="space-y-8">
-            <h2 className="text-3xl font-bold">Featured Projects</h2>
             <div className="grid gap-8 md:grid-cols-2">
               {featuredProjects.map((project, index) => (
                 <Card 
@@ -128,56 +116,6 @@ const Projects = () => {
             </div>
           </section>
 
-          {/* Other Projects */}
-          <section className="space-y-8">
-            <h2 className="text-3xl font-bold">Other Projects</h2>
-            <div className="grid gap-6 md:grid-cols-2">
-              {otherProjects.map((project, index) => (
-                <Card 
-                  key={project.id} 
-                  className="experience-card animate-slide-up"
-                  style={{ animationDelay: `${index * 0.1 + 0.2}s` }}
-                >
-                  <CardHeader>
-                    <CardTitle className="text-xl">{project.title}</CardTitle>
-                    <CardDescription>{project.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {project.longDescription}
-                    </p>
-                    
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
-                        <Badge key={tech} variant="outline" className="text-xs">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                    
-                    <div className="flex gap-3 pt-2">
-                      {project.liveUrl && (
-                        <Button size="sm" variant="outline" className="flex items-center gap-2" asChild>
-                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="h-4 w-4" />
-                            Demo
-                          </a>
-                        </Button>
-                      )}
-                      {project.githubUrl && (
-                        <Button size="sm" variant="ghost" className="flex items-center gap-2" asChild>
-                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                            <Github className="h-4 w-4" />
-                            Code
-                          </a>
-                        </Button>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </section>
         </div>
       </main>
     </div>

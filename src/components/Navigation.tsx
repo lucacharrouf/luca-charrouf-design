@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Search } from "lucide-react";
 import SearchModal from "./SearchModal";
+import { ThemeToggle } from "./ThemeToggle";
 
 const Navigation = () => {
   const location = useLocation();
@@ -63,13 +64,15 @@ const Navigation = () => {
             <span>Search...</span>
             <span className="ml-auto text-xs opacity-60">⌘K</span>
           </button>
-          
+
           <button
             onClick={handleSearchClick}
             className="flex items-center justify-center w-10 h-10 border border-border rounded-lg text-muted-foreground hover:border-primary hover:text-primary hover:bg-background transition-all duration-200 sm:hidden"
           >
             <Search className="h-4 w-4" />
           </button>
+
+          <ThemeToggle />
         </div>
       </div>
       

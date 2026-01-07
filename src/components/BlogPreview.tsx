@@ -2,40 +2,24 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Calendar, Clock } from "lucide-react";
+import { blogPosts } from "@/data/blogPosts";
 
 const BlogPreview = () => {
-  const blogPosts = [
-    {
-      id: 1,
-      title: "Building Scalable React Applications",
-      description: "Exploring best practices for architecting large-scale React applications with modern tooling and patterns.",
-      date: "2025-01-15",
-      readTime: "8 min",
-      slug: "building-scalable-react-applications"
-    },
-    {
-      id: 2,
-      title: "The Future of AI in Product Development",
-      description: "How artificial intelligence is transforming the way we approach product management and development cycles.",
-      date: "2025-01-10",
-      readTime: "6 min",
-      slug: "future-ai-product-development"
-    }
-  ];
+  // Get the two most recent posts
+  const recentPosts = blogPosts.slice(0, 2);
 
   return (
     <section className="py-16 px-4">
       <div className="container max-w-4xl mx-auto">
         <div className="text-center mb-12 animate-fade-in">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Writing</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">My thoughts</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            My thoughts on technology, product development, and the intersection
-            of innovation and human experience.
+            my ideas, learning and experiments
           </p>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 mb-8">
-          {blogPosts.map((post, index) => (
+          {recentPosts.map((post, index) => (
             <Card 
               key={post.id} 
               className="experience-card animate-slide-up"
