@@ -15,7 +15,7 @@ const Hero = () => {
         <div className="space-y-6 animate-fade-in">
           <div className="mx-auto w-72 h-72 border border-border overflow-hidden rounded-xl floating-image">
             <img
-              //src="/LucaBerkeley.jpg"
+              src="/LucaBerkeley.jpg"
               alt="Luca Charrouf"
               className="w-full h-full object-cover"
             />
