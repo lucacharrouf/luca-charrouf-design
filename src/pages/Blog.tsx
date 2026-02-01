@@ -23,7 +23,7 @@ const Blog = () => {
 
           {/* Blog Posts */}
           <section className="space-y-6">
-            {blogPosts.map((post, index) => (
+            {blogPosts.filter(post => post.active !== false).map((post, index) => (
                 <Card 
                   key={post.id} 
                   className="experience-card animate-slide-up hover:shadow-xl transition-all duration-300"

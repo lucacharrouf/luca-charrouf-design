@@ -5,8 +5,8 @@ import { Calendar, Clock } from "lucide-react";
 import { blogPosts } from "@/data/blogPosts";
 
 const BlogPreview = () => {
-  // Get the two most recent posts
-  const recentPosts = blogPosts.slice(0, 2);
+  // Get the two most recent active posts
+  const recentPosts = blogPosts.filter(post => post.active !== false).slice(0, 2);
 
   return (
     <section className="py-16 px-4">

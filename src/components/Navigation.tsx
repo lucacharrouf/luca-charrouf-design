@@ -68,20 +68,6 @@ const Navigation = () => {
           Luca Charrouf
         </Link>
 
-        <nav className="hidden md:flex items-center space-x-8">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`nav-link ${
-                location.pathname === item.path ? "text-foreground" : ""
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
-        </nav>
-
         <div className="flex items-center space-x-4">
           <button
             onClick={handleSearchClick}

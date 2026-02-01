@@ -7,7 +7,7 @@ import { blogPosts } from "@/data/blogPosts";
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
 
-  const post = blogPosts.find(p => p.slug === slug);
+  const post = blogPosts.find(p => p.slug === slug && p.active !== false);
 
   if (!post) {
     return (

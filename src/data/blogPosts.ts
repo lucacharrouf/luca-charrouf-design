@@ -7,6 +7,7 @@ export interface BlogPost {
   slug: string;
   tags: string[];
   content: string;
+  active?: boolean;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -18,6 +19,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "8 min",
     slug: "6-months-in-tableswap",
     tags: ["TableSwap"],
+    active: true,
     content: `
       It's been 6 months since I graduated, and unconsciouscly just also signed to end up starting my entreprenurial journey with my cofounder. It's started during a hackathon in the finals week, a 5 days hackathon. If you want to learn more about how hackathons are changing look here.
 
@@ -36,6 +38,7 @@ export const blogPosts: BlogPost[] = [
     readTime: "8 min",
     slug: "experiement-website-as-social-media",
     tags: ["Experiment"],
+    active: false,
     content: `
       So here's the thing, I am not sure how you got here. But I am geniunely sick of anything reading and seeing on any type of social media. X's team has 0 clue what they are doing with their algorithm, Linkedin, I mean, it's just LinkedIn. And than YouTube, and Instagram have shifted their focus on short form content, which is just intoxicating people.
 
