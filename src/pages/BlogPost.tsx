@@ -2,12 +2,36 @@ import { useParams, Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
-import { blogPosts } from "@/data/blogPosts";
+import { getBlogPostBySlug } from "@/lib/blog";
+import MDXBlogPost from "@/components/MDXBlogPost";
+import { useEffect, useState } from "react";
+import type { BlogPost } from "@/data/blogPosts";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
+  const [post, setPost] = useState<BlogPost | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
 
-  const post = blogPosts.find(p => p.slug === slug && p.active !== false);
+  useEffect(() => {
+    if (slug) {
+      const foundPost = getBlogPostBySlug(slug);
+      setPost(foundPost);
+      setLoading(false);
+    }
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <main className="container max-w-4xl mx-auto px-4 py-16">
+          <div className="text-center">
+            <p className="text-muted-foreground">Loading...</p>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   if (!post) {
     return (
@@ -56,35 +80,39 @@ const BlogPost = () => {
           </header>
 
           {/* Content */}
-          <div className="prose prose-lg max-w-none animate-slide-up">
-            <div className="space-y-6 text-foreground">
-              {post.content.split('\n').map((paragraph, index) => {
-                if (paragraph.trim() === '') return null;
-                
-                if (paragraph.startsWith('##')) {
+          {post.isMDX ? (
+            <MDXBlogPost post={post} />
+          ) : (
+            <div className="prose prose-lg max-w-none animate-slide-up">
+              <div className="space-y-6 text-foreground">
+                {post.content.split('\n').map((paragraph, index) => {
+                  if (paragraph.trim() === '') return null;
+                  
+                  if (paragraph.startsWith('##')) {
+                    return (
+                      <h2 key={index} className="text-2xl font-bold mt-8 mb-4">
+                        {paragraph.replace('##', '').trim()}
+                      </h2>
+                    );
+                  }
+                  
+                  if (paragraph.startsWith('-')) {
+                    return (
+                      <li key={index} className="ml-6 list-disc">
+                        {paragraph.replace('-', '').trim()}
+                      </li>
+                    );
+                  }
+                  
                   return (
-                    <h2 key={index} className="text-2xl font-bold mt-8 mb-4">
-                      {paragraph.replace('##', '').trim()}
-                    </h2>
+                    <p key={index} className="leading-relaxed text-muted-foreground">
+                      {paragraph.trim()}
+                    </p>
                   );
-                }
-                
-                if (paragraph.startsWith('-')) {
-                  return (
-                    <li key={index} className="ml-6 list-disc">
-                      {paragraph.replace('-', '').trim()}
-                    </li>
-                  );
-                }
-                
-                return (
-                  <p key={index} className="leading-relaxed text-muted-foreground">
-                    {paragraph.trim()}
-                  </p>
-                );
-              })}
+                })}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Footer */}
           <footer className="border-t border-border pt-8 mt-16">

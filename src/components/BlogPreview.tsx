@@ -2,11 +2,18 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import { Calendar, Clock } from "lucide-react";
-import { blogPosts } from "@/data/blogPosts";
+import { getAllBlogPosts } from "@/lib/blog";
+import { useEffect, useState } from "react";
+import { BlogPost } from "@/data/blogPosts";
 
 const BlogPreview = () => {
-  // Get the two most recent active posts
-  const recentPosts = blogPosts.filter(post => post.active !== false).slice(0, 2);
+  const [recentPosts, setRecentPosts] = useState<BlogPost[]>([]);
+
+  useEffect(() => {
+    // Get the two most recent posts
+    const allPosts = getAllBlogPosts();
+    setRecentPosts(allPosts.slice(0, 2));
+  }, []);
 
   return (
     <section className="py-16 px-4">
@@ -21,7 +28,7 @@ const BlogPreview = () => {
         <div className="grid gap-6 md:grid-cols-2 mb-8">
           {recentPosts.map((post, index) => (
             <Card 
-              key={post.id} 
+              key={post.slug} 
               className="experience-card animate-slide-up"
               style={{ animationDelay: `${index * 0.1}s` }}
             >

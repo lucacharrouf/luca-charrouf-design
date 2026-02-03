@@ -15,11 +15,11 @@ const Hero = () => {
         <div className="space-y-6 animate-fade-in">
           <div className="mx-auto w-72 h-72 border border-border overflow-hidden rounded-xl floating-image">
             <img
-              src="/LucaBerkeley.jpg"
+              src="/lucaHK.png"
               alt="Luca Charrouf"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover scale-125"
               loading="eager"
-              fetchPriority="high"
+              fetchpriority="high"
               decoding="async"
             />
           </div>
@@ -60,9 +60,6 @@ const Hero = () => {
           </Button>
           <Button asChild variant="outline" className="hero-button-outline">
             <Link to="/about">About Me</Link>
-          </Button>
-          <Button asChild variant="ghost" className="hero-button-outline">
-            <Link to="/blog">Read Blog</Link>
           </Button>
         </div>
       </div>

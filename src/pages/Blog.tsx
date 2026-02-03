@@ -3,9 +3,17 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock } from "lucide-react";
 import { Link } from "react-router-dom";
-import { blogPosts } from "@/data/blogPosts";
+import { getAllBlogPosts } from "@/lib/blog";
+import { useEffect, useState } from "react";
+import { BlogPost } from "@/data/blogPosts";
 
 const Blog = () => {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+
+  useEffect(() => {
+    const allPosts = getAllBlogPosts();
+    setPosts(allPosts);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -23,9 +31,9 @@ const Blog = () => {
 
           {/* Blog Posts */}
           <section className="space-y-6">
-            {blogPosts.filter(post => post.active !== false).map((post, index) => (
+            {posts.map((post, index) => (
                 <Card 
-                  key={post.id} 
+                  key={post.slug} 
                   className="experience-card animate-slide-up hover:shadow-xl transition-all duration-300"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >

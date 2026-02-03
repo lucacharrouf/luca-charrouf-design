@@ -10,6 +10,7 @@ interface ExperienceItem {
   description: string;
   logo: string;
   type: 'experience' | 'education';
+  companyUrl?: string;
 }
 
 const About = () => {
@@ -21,7 +22,8 @@ const About = () => {
       period: "Jun 2025 - Present",
       description: "Currently building the future of table management.",
       logo: "https://dsuvgkohymnkfhxhcvja.supabase.co/storage/v1/object/sign/logo/TsLogoBlack.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kYWMyYjQ2NC04NmZhLTQyZjktOWFiNy1hZGVkODljNWIwYWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJsb2dvL1RzTG9nb0JsYWNrLnBuZyIsImlhdCI6MTc2NzgxNzE0MSwiZXhwIjoyMDgzMTc3MTQxfQ.ONRNZ51qKchh1gomoNBecAKR_NSAFqvuDqph8rCYdFc",
-      type: 'experience'
+      type: 'experience',
+      companyUrl: "https://tableswap.app/"
     },
     {
       id: 2,
@@ -46,7 +48,7 @@ const About = () => {
       title: "Product",
       company: "PM Alpha",
       period: "May 2023 - May 2024",
-      description: "Learned a bunch of things about private markets, and automated the end-to-end pipeline of the operatiosn team to stramline the onboarding of LPs.",
+      description: "Learned a bunch of things about private markets, and automated the end-to-end pipeline of the operations team to streamline the onboarding of LPs.",
       logo: "https://media.licdn.com/dms/image/v2/C4D0BAQFgy83hEV5gdw/company-logo_200_200/company-logo_200_200/0/1645027063266/privatemarketalpha_logo?e=2147483647&v=beta&t=sAatMY5Sm0Ji4iNnHHSwGPEMStBe5FdgcZurQ6RRGNs",
       type: 'experience'
     },
@@ -123,7 +125,20 @@ const About = () => {
                             {exp.period}
                           </Badge>
                         </div>
-                        <p className="text-primary font-medium mb-3">{exp.company}</p>
+                        <p className="text-primary font-medium mb-3">
+                          {exp.companyUrl ? (
+                            <a
+                              href={exp.companyUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hover:underline"
+                            >
+                              {exp.company}
+                            </a>
+                          ) : (
+                            exp.company
+                          )}
+                        </p>
                         <p className="text-muted-foreground leading-relaxed">{exp.description}</p>
                       </div>
                     </div>
@@ -163,7 +178,20 @@ const About = () => {
                             {exp.period}
                           </Badge>
                         </div>
-                        <p className="text-primary font-medium mb-3">{exp.company}</p>
+                        <p className="text-primary font-medium mb-3">
+                          {exp.companyUrl ? (
+                            <a
+                              href={exp.companyUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hover:underline"
+                            >
+                              {exp.company}
+                            </a>
+                          ) : (
+                            exp.company
+                          )}
+                        </p>
                         <p className="text-muted-foreground leading-relaxed">{exp.description}</p>
                       </div>
                     </div>

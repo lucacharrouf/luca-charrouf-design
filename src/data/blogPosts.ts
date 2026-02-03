@@ -1,5 +1,4 @@
 export interface BlogPost {
-  id: number;
   title: string;
   description: string;
   date: string;
@@ -7,7 +6,9 @@ export interface BlogPost {
   slug: string;
   tags: string[];
   content: string;
-  active?: boolean;
+  draft?: boolean;
+  isMDX?: boolean;
+  featuredImage?: string;
 }
 
 export const blogPosts: BlogPost[] = [
