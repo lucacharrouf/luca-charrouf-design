@@ -20,7 +20,7 @@ const About = () => {
       title: "Co-Founder",
       company: "TableSwap",
       period: "Jun 2025 - Present",
-      description: "Currently building the future of table management.",
+      description: "Need a Table?",
       logo: "https://dsuvgkohymnkfhxhcvja.supabase.co/storage/v1/object/sign/logo/TsLogoBlack.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9kYWMyYjQ2NC04NmZhLTQyZjktOWFiNy1hZGVkODljNWIwYWMiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJsb2dvL1RzTG9nb0JsYWNrLnBuZyIsImlhdCI6MTc2NzgxNzE0MSwiZXhwIjoyMDgzMTc3MTQxfQ.ONRNZ51qKchh1gomoNBecAKR_NSAFqvuDqph8rCYdFc",
       type: 'experience',
       companyUrl: "https://tableswap.app/"
