@@ -53,7 +53,7 @@ const Hero = () => {
       <div className="absolute inset-0 overflow-hidden">
         <img
           ref={imgRef}
-          src="/lucaHK.png"
+          src="/lucaHK.webp"
           alt="Luca Charrouf"
           className="w-full h-full object-cover object-[center_5%] sm:object-top will-change-transform"
           style={{

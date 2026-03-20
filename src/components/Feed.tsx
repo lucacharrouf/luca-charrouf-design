@@ -15,7 +15,7 @@ const feedItems: FeedItem[] = [
   {
     type: "image",
     date: "2026-03-18",
-    src: "/lucaHK.png",
+    src: "/lucaHK.webp",
     caption: "Hong Kong, 2023 — the city that never sleeps, just naps between dim sum rounds",
     aspect: "cinematic",
     dominantColor: "180, 40%, 35%",
@@ -56,7 +56,7 @@ const feedItems: FeedItem[] = [
   {
     type: "image",
     date: "2026-02-10",
-    src: "/LucaSF.jpg",
+    src: "/LucaSF.webp",
     caption: "San Francisco, early morning — before the fog rolls in",
     aspect: "wide",
     dominantColor: "210, 30%, 45%",
@@ -81,7 +81,7 @@ const feedItems: FeedItem[] = [
   {
     type: "image",
     date: "2026-01-20",
-    src: "/AnthropicHack.jpg",
+    src: "/AnthropicHack.webp",
     caption: "Anthropic MCP hackathon — Think Fast, Think Slow. 2 hours to build something that actually works.",
     aspect: "wide",
     dominantColor: "25, 35%, 40%",
