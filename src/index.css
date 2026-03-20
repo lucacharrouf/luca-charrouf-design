@@ -2,97 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Minimal black and white design system
-All colors MUST be HSL for proper theming */
+/* Old money — warm ivory, deep charcoal, muted gold accents */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
+    --background: 40 20% 97%;
+    --foreground: 30 10% 12%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
+    --card: 40 20% 95%;
+    --card-foreground: 30 10% 12%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
+    --popover: 40 20% 97%;
+    --popover-foreground: 30 10% 12%;
 
-    --primary: 0 0% 0%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 30 10% 12%;
+    --primary-foreground: 40 20% 97%;
 
-    --secondary: 0 0% 95%;
-    --secondary-foreground: 0 0% 0%;
+    --secondary: 40 15% 92%;
+    --secondary-foreground: 30 10% 12%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 40%;
+    --muted: 40 15% 93%;
+    --muted-foreground: 30 8% 45%;
 
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 0%;
+    --accent: 38 30% 82%;
+    --accent-foreground: 30 10% 12%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 96%;
-    --ring: 0 0% 0%;
+    --border: 35 15% 88%;
+    --input: 40 15% 93%;
+    --ring: 36 25% 52%;
 
     --radius: 0.5rem;
 
-    /* Minimal transitions */
-    --transition-smooth: all 0.2s ease;
+    --transition-smooth: all 0.3s ease;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 40 20% 96%;
+    --sidebar-foreground: 30 10% 20%;
+    --sidebar-primary: 30 10% 12%;
+    --sidebar-primary-foreground: 40 20% 97%;
+    --sidebar-accent: 40 15% 92%;
+    --sidebar-accent-foreground: 30 10% 12%;
+    --sidebar-border: 35 15% 88%;
+    --sidebar-ring: 36 25% 52%;
   }
 
   .dark {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    --background: 30 10% 6%;
+    --foreground: 40 15% 90%;
 
-    --card: 0 0% 0%;
-    --card-foreground: 0 0% 100%;
+    --card: 30 10% 9%;
+    --card-foreground: 40 15% 90%;
 
-    --popover: 0 0% 0%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 30 10% 6%;
+    --popover-foreground: 40 15% 90%;
 
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 40 15% 90%;
+    --primary-foreground: 30 10% 6%;
 
-    --secondary: 0 0% 5%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 30 8% 14%;
+    --secondary-foreground: 40 15% 90%;
 
-    --muted: 0 0% 4%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 30 8% 12%;
+    --muted-foreground: 40 10% 55%;
 
-    --accent: 0 0% 5%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 36 20% 22%;
+    --accent-foreground: 40 15% 90%;
 
     --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 10%;
-    --input: 0 0% 4%;
-    --ring: 0 0% 100%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 30 8% 16%;
+    --input: 30 8% 12%;
+    --ring: 36 25% 52%;
+
+    --sidebar-background: 30 10% 8%;
+    --sidebar-foreground: 40 15% 85%;
+    --sidebar-primary: 36 25% 52%;
+    --sidebar-primary-foreground: 40 20% 97%;
+    --sidebar-accent: 30 8% 14%;
+    --sidebar-accent-foreground: 40 15% 85%;
+    --sidebar-border: 30 8% 16%;
+    --sidebar-ring: 36 25% 52%;
   }
 }
 
@@ -103,10 +95,48 @@ All colors MUST be HSL for proper theming */
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
   }
 
   html {
-    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  /* Serif headings everywhere */
+  h1, h2, h3 {
+    font-family: "Playfair Display", Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+
+  /* Selection color — gold tint */
+  ::selection {
+    background: hsl(36 40% 80% / 0.4);
+    color: hsl(30 10% 12%);
+  }
+
+  .dark ::selection {
+    background: hsl(36 30% 30% / 0.5);
+    color: hsl(40 15% 90%);
+  }
+
+  /* Custom scrollbar — barely there */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.3);
   }
 }
 
@@ -128,55 +158,88 @@ All colors MUST be HSL for proper theming */
   50% { transform: translateY(-3px); }
 }
 
+@keyframes reveal {
+  0% { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0% 0 0); }
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  30% { transform: translate(3%, -15%); }
+  50% { transform: translate(12%, 9%); }
+  70% { transform: translate(9%, 4%); }
+  90% { transform: translate(-1%, 7%); }
+}
+
 @layer components {
   .hero-button {
-    @apply bg-primary text-primary-foreground hover:bg-primary/80 px-6 py-2 font-medium transition-all duration-200 border border-primary rounded-lg;
+    @apply bg-primary text-primary-foreground hover:bg-primary/80 px-8 py-3 font-medium transition-all duration-300 border border-primary rounded-sm font-sans tracking-wider text-sm uppercase;
   }
-  
+
   .hero-button-liquid {
-    @apply bg-primary text-primary-foreground px-6 py-2 font-medium border border-primary animate-liquid;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    @apply bg-primary text-primary-foreground px-8 py-3 font-medium border border-primary animate-liquid font-sans tracking-wider text-sm uppercase;
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
-  
+
   .hero-button-liquid:hover {
     @apply bg-primary/80;
     transform: translateY(-1px);
   }
-  
+
   .hero-button-outline {
-    @apply border border-border hover:border-primary hover:text-primary px-6 py-2 font-medium rounded-lg;
-    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    @apply border border-foreground/20 hover:border-foreground hover:text-foreground px-8 py-3 font-medium rounded-sm font-sans tracking-wider text-sm uppercase;
+    transition: transform 0.3s ease, border-color 0.3s ease, color 0.3s ease;
   }
-  
+
   .hero-button-outline:hover {
     transform: translateY(-1px);
   }
-  
+
   .floating-image {
     @apply animate-float;
   }
-  
+
   .nav-link {
-    @apply text-muted-foreground hover:text-foreground transition-colors duration-200 relative;
+    @apply text-muted-foreground hover:text-foreground transition-colors duration-300 relative font-sans text-sm tracking-wide uppercase;
   }
-  
+
   .nav-link::after {
-    @apply content-[''] absolute w-full h-0.5 bg-primary bottom-0 left-0 scale-x-0 origin-right transition-transform duration-200;
+    @apply content-[''] absolute w-full h-px bg-foreground bottom-0 left-0 scale-x-0 origin-right transition-transform duration-300;
   }
-  
+
   .nav-link:hover::after {
     @apply scale-x-100 origin-left;
   }
-  
+
   .fade-in {
     @apply animate-fade-in;
   }
-  
+
   .experience-card {
-    @apply bg-card border border-border p-6 transition-all duration-200 hover:border-primary rounded-lg;
+    @apply bg-card border border-border p-6 transition-all duration-300 hover:border-foreground/30 rounded-sm;
   }
-  
+
   .social-button {
-    @apply w-10 h-10 border border-border hover:border-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200 flex items-center justify-center rounded-lg;
+    @apply w-10 h-10 border border-border hover:border-foreground hover:text-foreground transition-all duration-300 flex items-center justify-center rounded-sm;
+  }
+
+  /* Film grain overlay — subtle texture */
+  .grain::before {
+    content: "";
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    width: 200%;
+    height: 200%;
+    background: transparent
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E")
+      repeat;
+    animation: grain 8s steps(10) infinite;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.4;
   }
 }

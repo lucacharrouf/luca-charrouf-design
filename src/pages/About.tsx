@@ -1,7 +1,4 @@
 import Navigation from "@/components/Navigation";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-
 interface ExperienceItem {
   id: number;
   title: string;
@@ -81,123 +78,82 @@ const About = () => {
     }
   ];
 
+  const renderEntry = (exp: ExperienceItem, index: number) => (
+    <div
+      key={exp.id}
+      className="group animate-slide-up flex gap-6"
+      style={{ animationDelay: `${index * 0.08}s` }}
+    >
+      <div className="flex-shrink-0 w-11 h-11 bg-card border border-border rounded-sm overflow-hidden flex items-center justify-center">
+        {exp.logo.startsWith('http') ? (
+          <img
+            src={exp.logo}
+            alt={`${exp.company} logo`}
+            className="w-full h-full object-contain"
+          />
+        ) : (
+          <span className="text-xs font-medium text-foreground">{exp.logo}</span>
+        )}
+      </div>
+      <div className="flex-grow space-y-1.5 pb-8 border-b border-border/50 last:border-0">
+        <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1">
+          <h3 className="text-lg font-serif font-medium">{exp.title}</h3>
+          <span className="text-xs font-sans uppercase tracking-[0.1em] text-muted-foreground">
+            {exp.period}
+          </span>
+        </div>
+        <p className="text-sm font-medium text-foreground/80">
+          {exp.companyUrl ? (
+            <a
+              href={exp.companyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors duration-300 underline underline-offset-2 decoration-border hover:decoration-foreground"
+            >
+              {exp.company}
+            </a>
+          ) : (
+            exp.company
+          )}
+        </p>
+        <p className="text-muted-foreground leading-relaxed font-light text-sm pt-1">
+          {exp.description}
+        </p>
+      </div>
+    </div>
+  );
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background grain">
       <Navigation />
-      
-      <main className="container max-w-4xl mx-auto px-4 py-16">
-        <div className="space-y-16">
+
+      <main className="max-w-3xl mx-auto px-5 sm:px-6 md:px-12 pt-24 sm:pt-32 pb-24">
+        <div className="space-y-14 sm:space-y-20">
           {/* Header */}
-          <section className="space-y-6 animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold">About Me</h1>
-            <p className="text-xl text-muted-foreground max-w-3xl leading-relaxed">
+          <section className="space-y-4 animate-fade-in">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-medium">About Me</h1>
+            <p className="text-lg text-muted-foreground font-light leading-relaxed">
               Currently building the best concierge service.
             </p>
           </section>
 
           {/* Experience */}
-          <section className="space-y-8">
-            <h2 className="text-3xl font-bold">Experience</h2>
-            <div className="space-y-6">
-              {experiences.filter(exp => exp.type === 'experience').map((exp, index) => (
-                <Card 
-                  key={exp.id} 
-                  className="experience-card animate-slide-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center border border-border overflow-hidden">
-                      {exp.logo.startsWith('http') ? (
-                        <img 
-                          src={exp.logo} 
-                          alt={`${exp.company} logo`}
-                          className="w-full h-full object-contain"
-                        />
-                      ) : (
-                        <span className="text-sm font-bold text-primary">{exp.logo}</span>
-                      )}
-                    </div>
-                      <div className="flex-grow">
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                          <h3 className="text-xl font-semibold">{exp.title}</h3>
-                          <Badge variant="secondary" className="w-fit mt-1 md:mt-0">
-                            {exp.period}
-                          </Badge>
-                        </div>
-                        <p className="text-primary font-medium mb-3">
-                          {exp.companyUrl ? (
-                            <a
-                              href={exp.companyUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="hover:underline"
-                            >
-                              {exp.company}
-                            </a>
-                          ) : (
-                            exp.company
-                          )}
-                        </p>
-                        <p className="text-muted-foreground leading-relaxed">{exp.description}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+          <section className="space-y-10">
+            <h2 className="text-sm font-sans uppercase tracking-[0.2em] text-muted-foreground">
+              Experience
+            </h2>
+            <div className="space-y-8">
+              {experiences.filter(exp => exp.type === 'experience').map((exp, index) => renderEntry(exp, index))}
             </div>
           </section>
 
           {/* Education */}
-          <section className="space-y-8">
-            <h2 className="text-3xl font-bold">Education</h2>
-            <div className="space-y-6">
-              {experiences.filter(exp => exp.type === 'education').map((exp, index) => (
-                <Card 
-                  key={exp.id} 
-                  className="experience-card animate-slide-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center border border-border overflow-hidden">
-                        {exp.logo.startsWith('http') ? (
-                          <img 
-                            src={exp.logo} 
-                            alt={`${exp.company} logo`}
-                            className="w-full h-full object-contain"
-                          />
-                        ) : (
-                          <span className="text-sm font-bold text-primary">{exp.logo}</span>
-                        )}
-                      </div>
-                      <div className="flex-grow">
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                          <h3 className="text-xl font-semibold">{exp.title}</h3>
-                          <Badge variant="secondary" className="w-fit mt-1 md:mt-0">
-                            {exp.period}
-                          </Badge>
-                        </div>
-                        <p className="text-primary font-medium mb-3">
-                          {exp.companyUrl ? (
-                            <a
-                              href={exp.companyUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="hover:underline"
-                            >
-                              {exp.company}
-                            </a>
-                          ) : (
-                            exp.company
-                          )}
-                        </p>
-                        <p className="text-muted-foreground leading-relaxed">{exp.description}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+          <section className="space-y-10">
+            <h2 className="text-sm font-sans uppercase tracking-[0.2em] text-muted-foreground">
+              Education
+            </h2>
+            <div className="space-y-8">
+              {experiences.filter(exp => exp.type === 'education').map((exp, index) => renderEntry(exp, index))}
             </div>
           </section>
         </div>

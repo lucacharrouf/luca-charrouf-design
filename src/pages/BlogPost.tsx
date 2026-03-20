@@ -7,7 +7,7 @@ import MDXBlogPost from "@/components/MDXBlogPost";
 import { useEffect, useState } from "react";
 import type { BlogPost } from "@/data/blogPosts";
 
-const BlogPost = () => {
+const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
   const [post, setPost] = useState<BlogPost | undefined>(undefined);
   const [loading, setLoading] = useState(true);
@@ -22,12 +22,10 @@ const BlogPost = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background grain">
         <Navigation />
-        <main className="container max-w-4xl mx-auto px-4 py-16">
-          <div className="text-center">
-            <p className="text-muted-foreground">Loading...</p>
-          </div>
+        <main className="max-w-3xl mx-auto px-5 sm:px-6 md:px-12 pt-24 sm:pt-32 pb-24">
+          <p className="text-muted-foreground font-light">Loading...</p>
         </main>
       </div>
     );
@@ -35,91 +33,100 @@ const BlogPost = () => {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background grain">
         <Navigation />
-        <main className="container max-w-4xl mx-auto px-4 py-16">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Post Not Found</h1>
-            <p className="text-muted-foreground mb-8">The blog post you're looking for doesn't exist.</p>
-            <Button asChild variant="outline">
-              <Link to="/blog">← Back to Blog</Link>
-            </Button>
-          </div>
+        <main className="max-w-3xl mx-auto px-5 sm:px-6 md:px-12 pt-24 sm:pt-32 pb-24 text-center">
+          <h1 className="text-4xl font-serif font-medium mb-4">Post Not Found</h1>
+          <p className="text-muted-foreground font-light mb-8">The blog post you're looking for doesn't exist.</p>
+          <Button asChild variant="outline" className="hero-button-outline">
+            <Link to="/blog">Back to Blog</Link>
+          </Button>
         </main>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background grain">
       <Navigation />
-      
-      <main className="container max-w-4xl mx-auto px-4 py-16">
-        <article className="space-y-8">
-          {/* Back Button */}
-          <Button asChild variant="ghost" className="mb-8">
-            <Link to="/blog" className="flex items-center gap-2">
-              <ArrowLeft className="h-4 w-4" />
-              Back to Blog
-            </Link>
-          </Button>
+
+      <main className="max-w-3xl mx-auto px-5 sm:px-6 md:px-12 pt-24 sm:pt-32 pb-24">
+        <article className="space-y-10">
+          {/* Back */}
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 text-[11px] font-sans uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors duration-300"
+          >
+            <ArrowLeft className="h-3 w-3" />
+            Back
+          </Link>
 
           {/* Header */}
-          <header className="space-y-4 animate-fade-in">
-            <h1 className="text-4xl md:text-5xl font-bold">{post.title}</h1>
-            <div className="flex items-center gap-4 text-muted-foreground">
-              <div className="flex items-center gap-1">
-                <Calendar className="h-4 w-4" />
-                {new Date(post.date).toLocaleDateString()}
+          <header className="space-y-5 animate-fade-in">
+            <div className="flex items-center gap-4 text-[11px] font-sans uppercase tracking-[0.15em] text-foreground/35">
+              <div className="flex items-center gap-1.5">
+                <Calendar className="h-3 w-3" />
+                {new Date(post.date).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
               </div>
-              <div className="flex items-center gap-1">
-                <Clock className="h-4 w-4" />
+              <span className="w-1 h-1 rounded-full bg-foreground/20" />
+              <div className="flex items-center gap-1.5">
+                <Clock className="h-3 w-3" />
                 {post.readTime}
               </div>
             </div>
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-medium leading-[1.1] tracking-tight">
+              {post.title}
+            </h1>
+            <div className="w-12 h-px bg-foreground/15 mt-6" />
           </header>
 
           {/* Content */}
           {post.isMDX ? (
             <MDXBlogPost post={post} />
           ) : (
-            <div className="prose prose-lg max-w-none animate-slide-up">
-              <div className="space-y-6 text-foreground">
-                {post.content.split('\n').map((paragraph, index) => {
-                  if (paragraph.trim() === '') return null;
-                  
-                  if (paragraph.startsWith('##')) {
-                    return (
-                      <h2 key={index} className="text-2xl font-bold mt-8 mb-4">
-                        {paragraph.replace('##', '').trim()}
-                      </h2>
-                    );
-                  }
-                  
-                  if (paragraph.startsWith('-')) {
-                    return (
-                      <li key={index} className="ml-6 list-disc">
-                        {paragraph.replace('-', '').trim()}
-                      </li>
-                    );
-                  }
-                  
+            <div className="animate-slide-up space-y-6">
+              {post.content.split('\n').map((paragraph, index) => {
+                if (paragraph.trim() === '') return null;
+
+                if (paragraph.startsWith('##')) {
                   return (
-                    <p key={index} className="leading-relaxed text-muted-foreground">
-                      {paragraph.trim()}
-                    </p>
+                    <h2 key={index} className="text-2xl font-serif font-medium mt-10 mb-4">
+                      {paragraph.replace('##', '').trim()}
+                    </h2>
                   );
-                })}
-              </div>
+                }
+
+                if (paragraph.startsWith('-')) {
+                  return (
+                    <li key={index} className="ml-6 list-disc text-foreground/70 leading-[1.8] font-light">
+                      {paragraph.replace('-', '').trim()}
+                    </li>
+                  );
+                }
+
+                return (
+                  <p key={index} className="text-foreground/70 leading-[1.9] font-light text-[16px]">
+                    {paragraph.trim()}
+                  </p>
+                );
+              })}
             </div>
           )}
 
           {/* Footer */}
-          <footer className="border-t border-border pt-8 mt-16">
+          <footer className="pt-16 mt-16">
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-foreground/[0.06] to-transparent mb-10" />
             <div className="text-center">
-              <Button asChild variant="outline">
-                <Link to="/blog">← Read More Posts</Link>
-              </Button>
+              <Link
+                to="/blog"
+                className="text-[11px] font-sans uppercase tracking-[0.2em] text-foreground/40 hover:text-foreground transition-colors duration-300"
+              >
+                &larr; Read More Posts
+              </Link>
             </div>
           </footer>
         </article>
@@ -128,4 +135,4 @@ const BlogPost = () => {
   );
 };
 
-export default BlogPost;
+export default BlogPostPage;
