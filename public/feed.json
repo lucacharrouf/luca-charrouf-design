@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "profile": {
+    "name": "Luca Charrouf",
+    "domain": "lucacharrouf.com",
+    "bio": "Building TableSwap. Berkeley CS. Designing at the intersection of technology and hospitality.",
+    "avatar": "https://lucacharrouf.com/lucaLogo.webp",
+    "url": "https://lucacharrouf.com"
+  },
+  "items": [
+    {
+      "id": "test-thought-001",
+      "type": "thought",
+      "date": "2026-03-20",
+      "text": "Testing the Feel network. One JSON file, zero infrastructure, infinite possibility.",
+      "location": "San Francisco",
+      "coords": [37.7749, -122.4194]
+    }
+  ]
+}

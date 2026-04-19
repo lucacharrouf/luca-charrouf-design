@@ -10,56 +10,65 @@ interface MDXBlogPostProps {
 
 const MDXBlogPost = ({ post }: MDXBlogPostProps) => {
   return (
-    <div className="prose prose-lg dark:prose-invert max-w-none animate-slide-up">
+    <div className="animate-slide-up">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeHighlight]}
         components={{
           h1: ({ children }) => (
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 mt-8 text-foreground">
+            <h1 className="text-3xl sm:text-4xl font-serif font-medium leading-tight tracking-tight mt-16 mb-6 text-foreground">
               {children}
             </h1>
           ),
           h2: ({ children }) => (
-            <h2 className="text-2xl font-bold mt-8 mb-4 text-foreground">
+            <h2 className="text-2xl sm:text-3xl font-serif font-medium leading-tight tracking-tight mt-14 mb-5 text-foreground">
               {children}
             </h2>
           ),
           h3: ({ children }) => (
-            <h3 className="text-xl font-bold mt-6 mb-3 text-foreground">
+            <h3 className="text-xl sm:text-2xl font-serif font-medium leading-snug mt-10 mb-4 text-foreground">
               {children}
             </h3>
           ),
+          h4: ({ children }) => (
+            <h4 className="text-lg font-serif font-medium mt-8 mb-3 text-foreground">
+              {children}
+            </h4>
+          ),
           p: ({ children }) => (
-            <p className="leading-relaxed text-muted-foreground mb-4">
+            <p className="text-[17px] leading-[1.85] font-light text-foreground/80 mb-6">
               {children}
             </p>
           ),
           img: ({ src, alt }) => (
-            <img
-              src={src}
-              alt={alt}
-              className="rounded-lg my-6 w-full"
-            />
+            <figure className="my-10">
+              <img src={src} alt={alt} className="rounded-md w-full" />
+              {alt && (
+                <figcaption className="mt-3 text-xs font-sans uppercase tracking-[0.15em] text-foreground/40 text-center">
+                  {alt}
+                </figcaption>
+              )}
+            </figure>
           ),
           ul: ({ children }) => (
-            <ul className="list-disc ml-6 mb-4 text-muted-foreground">
+            <ul className="list-disc pl-6 mb-6 space-y-2 text-[17px] leading-[1.8] font-light text-foreground/80 marker:text-foreground/30">
               {children}
             </ul>
           ),
           ol: ({ children }) => (
-            <ol className="list-decimal ml-6 mb-4 text-muted-foreground">
+            <ol className="list-decimal pl-6 mb-6 space-y-2 text-[17px] leading-[1.8] font-light text-foreground/80 marker:text-foreground/30">
               {children}
             </ol>
           ),
-          li: ({ children }) => (
-            <li className="mb-2">{children}</li>
+          li: ({ children }) => <li className="pl-1">{children}</li>,
+          hr: () => (
+            <hr className="my-12 border-0 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent" />
           ),
           code: ({ className, children, ...props }) => {
             const isInline = !className;
             return isInline ? (
               <code
-                className="px-1.5 py-0.5 rounded bg-muted text-sm font-mono"
+                className="px-1.5 py-0.5 rounded bg-muted text-[0.9em] font-mono text-foreground"
                 {...props}
               >
                 {children}
@@ -71,25 +80,29 @@ const MDXBlogPost = ({ post }: MDXBlogPostProps) => {
             );
           },
           pre: ({ children }) => (
-            <pre className="bg-muted p-4 rounded-lg overflow-x-auto mb-4">
+            <pre className="bg-muted/60 border border-border/50 p-4 rounded-md overflow-x-auto my-6 text-sm leading-relaxed">
               {children}
             </pre>
           ),
           blockquote: ({ children }) => (
-            <blockquote className="border-l-4 border-primary pl-4 italic my-4 text-muted-foreground">
+            <blockquote className="border-l-2 border-foreground/30 pl-6 my-8 font-serif italic text-[18px] leading-[1.7] text-foreground/75">
               {children}
             </blockquote>
           ),
           a: ({ href, children }) => (
             <a
               href={href}
-              className="text-primary hover:underline"
+              className="text-foreground underline underline-offset-4 decoration-foreground/30 hover:decoration-foreground transition-colors"
               target={href?.startsWith('http') ? '_blank' : undefined}
               rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
             >
               {children}
             </a>
           ),
+          strong: ({ children }) => (
+            <strong className="font-medium text-foreground">{children}</strong>
+          ),
+          em: ({ children }) => <em className="italic">{children}</em>,
         }}
       >
         {post.content}

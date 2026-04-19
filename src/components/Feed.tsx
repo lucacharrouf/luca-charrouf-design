@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState, memo, useCallback } from "react";
+import { useEffect, useMemo, useRef, useState, memo, useCallback } from "react";
 import LiveLocation from "./LiveLocation";
+import { getAllBlogPosts } from "@/lib/blog";
 
 type FeedItem =
   | { type: "essay"; date: string; title: string; description: string; slug: string; location?: string; coords?: [number, number] }
@@ -11,124 +12,21 @@ type FeedItem =
   | { type: "gallery"; date: string; images: { src: string; dominantColor: string }[]; caption?: string; location?: string; coords?: [number, number] }
   | { type: "repost"; date: string; comment: string; original: { author: string; handle?: string; date?: string; text: string; url?: string; source?: string; image?: string }; location?: string; coords?: [number, number] };
 
-const feedItems: FeedItem[] = [
-  {
-    type: "image",
-    date: "2026-03-18",
-    src: "/lucaHK.webp",
-    caption: "Hong Kong, 2023 — the city that never sleeps, just naps between dim sum rounds",
-    aspect: "cinematic",
-    dominantColor: "180, 40%, 35%",
-    location: "Hong Kong",
-    coords: [22.3193, 114.1694],
-  },
-  {
-    type: "repost",
-    date: "2026-03-17",
-    comment: "This is exactly the mindset behind TableSwap. Don't add more buttons — remove the friction entirely.",
-    original: {
-      author: "John Maeda",
-      handle: "@johnmaeda",
-      date: "2026-03-16",
-      text: "The best technology disappears. It doesn't ask you to learn it — it just works, like a door handle.",
-      url: "https://x.com/johnmaeda",
-      source: "X",
-    },
-    location: "San Francisco",
-    coords: [37.7749, -122.4194],
-  },
-  {
-    type: "thought",
-    date: "2026-03-15",
-    text: "The best products I've used this year all had one thing in common — they removed features instead of adding them.",
-    location: "San Francisco",
-    coords: [37.7749, -122.4194],
-  },
-  {
+const manualItems: FeedItem[] = [];
+
+function getFeedItems(): FeedItem[] {
+  const essays: FeedItem[] = getAllBlogPosts().map((post) => ({
     type: "essay",
-    date: "2026-01-01",
-    title: "6 months in building the best concierge service",
-    description: "A bit of my journed from hackathon, to side project, to going all it, and now officialy running my company with my Cofounder.",
-    slug: "6-months-in-tableswap",
-    location: "San Francisco",
-    coords: [37.7749, -122.4194],
-  },
-  {
-    type: "image",
-    date: "2026-02-10",
-    src: "/LucaSF.webp",
-    caption: "San Francisco, early morning — before the fog rolls in",
-    aspect: "wide",
-    dominantColor: "210, 30%, 45%",
-    location: "San Francisco",
-    coords: [37.7749, -122.4194],
-  },
-  {
-    type: "quote",
-    date: "2026-02-20",
-    text: "The best way to predict the future is to invent it.",
-    attribution: "Alan Kay",
-    location: "Berkeley",
-    coords: [37.8716, -122.2727],
-  },
-  {
-    type: "thought",
-    date: "2026-02-05",
-    text: "Spent the entire weekend reading about restaurant economics. The margins are brutal. No wonder most close in year one. This is exactly why TableSwap needs to exist.",
-    location: "San Francisco",
-    coords: [37.7749, -122.4194],
-  },
-  {
-    type: "image",
-    date: "2026-01-20",
-    src: "/AnthropicHack.webp",
-    caption: "Anthropic MCP hackathon — Think Fast, Think Slow. 2 hours to build something that actually works.",
-    aspect: "wide",
-    dominantColor: "25, 35%, 40%",
-    location: "San Francisco",
-    coords: [37.7749, -122.4194],
-  },
-  {
-    type: "link",
-    date: "2026-01-28",
-    title: "Why the future of dining is concierge-first",
-    url: "https://tableswap.app",
-    source: "tableswap.app",
-    location: "San Francisco",
-    coords: [37.7749, -122.4194],
-  },
-  {
-    type: "thought",
-    date: "2026-01-10",
-    text: "Hot take: personal websites are underrated as a form of self-expression. Social media flattens everyone into the same template. Your own site is your own gallery.",
-    location: "Berkeley",
-    coords: [37.8716, -122.2727],
-  },
-  {
-    type: "quote",
-    date: "2025-12-30",
-    text: "Simplicity is the ultimate sophistication.",
-    attribution: "Leonardo da Vinci",
-    location: "London",
-    coords: [51.5074, -0.1278],
-  },
-  {
-    type: "thought",
-    date: "2025-12-15",
-    text: "Berkeley taught me CS. Hong Kong taught me how to eat. London taught me how to think. San Francisco taught me how to build.",
-    location: "San Francisco",
-    coords: [37.7749, -122.4194],
-  },
-  {
-    type: "essay",
-    date: "2026-05-01",
-    title: "My website is becoming my main communication channel",
-    description: "I am testing something probably stupid, but still I am testing it. I want to centralized everything I would post on social media to my personal website.",
-    slug: "experiement-website-as-social-media",
-    location: "San Francisco",
-    coords: [37.7749, -122.4194],
-  },
-];
+    date: post.date,
+    title: post.title,
+    description: post.description,
+    slug: post.slug,
+  }));
+
+  return [...manualItems, ...essays].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+}
 
 // ─── Scroll-reveal hook ─────────────────────────────────
 function useReveal<T extends HTMLElement>() {
@@ -500,6 +398,8 @@ const RepostOriginalContent = memo(({
 // ─── Main Feed ──────────────────────────────────────────
 
 const Feed = () => {
+  const feedItems = useMemo(() => getFeedItems(), []);
+
   const locations = feedItems.map((item) => ({
     name: item.location || "",
     coords: item.coords || [0, 0] as [number, number],
